@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	TokenExpirationTime = time.Hour * 2
+	TokenExpirationTime = time.Hour * 48
 )
 
 type userInfo struct {
