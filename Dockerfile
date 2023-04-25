@@ -1,16 +1,15 @@
-FROM ghcr.io/linuxserver/baseimage-alpine:3.14
-
+FROM alpine:latest
 RUN apk --update add ca-certificates \
                      mailcap \
                      curl
 
 HEALTHCHECK --start-period=2s --interval=5s --timeout=3s \
-  CMD curl -f http://localhost/health || exit 1
+  CMD curl -f http://localhost:8080/health || exit 1
 
-# copy local files
-COPY docker/root/ /
-COPY filebrowser /usr/bin/filebrowser
-
-# ports and volumes
-VOLUME /srv /config /database
+VOLUME /srv
 EXPOSE 8080
+
+COPY docker_config.json /.filebrowser.json
+COPY filebrowser /filebrowser
+
+ENTRYPOINT [ "/filebrowser" ]
