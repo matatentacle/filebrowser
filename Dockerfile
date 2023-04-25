@@ -1,4 +1,5 @@
-FROM alpine:latest
+FROM alpine as builder
+ARG VERSION
 RUN apk --update add ca-certificates \
                      mailcap \
                      curl
