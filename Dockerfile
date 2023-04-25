@@ -1,5 +1,4 @@
-FROM alpine as builder
-ARG VERSION
+FROM alpine:latest
 RUN apk --update add ca-certificates \
                      mailcap \
                      curl
@@ -11,6 +10,6 @@ VOLUME /srv
 EXPOSE 8080
 
 COPY docker_config.json /.filebrowser.json
-COPY --from=builder /usr/local/bin/filebrowser  /filebrowser
+COPY /usr/local/bin/filebrowser  /filebrowser
 
 ENTRYPOINT [ "/filebrowser" ]
