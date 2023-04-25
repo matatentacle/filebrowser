@@ -10,6 +10,6 @@ VOLUME /srv
 EXPOSE 8080
 
 COPY docker_config.json /.filebrowser.json
-COPY filebrowser /filebrowser
+COPY --from=builder /usr/local/bin/filebrowser  /filebrowser
 
 ENTRYPOINT [ "/filebrowser" ]
